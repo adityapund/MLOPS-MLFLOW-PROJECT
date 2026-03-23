@@ -1,0 +1,158 @@
+MLflow + DagsHub End-to-End Workflow (52 Steps)
+
+1> Create a GitHub repository and clone it locally.
+2> Create project structure: src/, data/ (optional), models/ (optional).
+3> Create train.py inside src/.
+4> Load dataset (Wine dataset).
+5> Perform train-test split.
+6> Define RandomForest model.
+7> Train the model.
+8> Predict on test data.
+9> Calculate accuracy.
+10> Run script to verify it works without MLflow.
+11> git add, commit, push to GitHub.
+
+--- MLflow Setup ---
+
+12> Install MLflow using pip install mlflow.
+13> Start MLflow UI using mlflow ui.
+14> Open browser at http://127.0.0.1:5000.
+15> Verify no experiments exist initially.
+
+--- MLflow Integration ---
+
+16> Import mlflow and mlflow.sklearn in train.py.
+17> Enable autologging:
+     mlflow.autolog()
+18> Set experiment:
+     mlflow.set_experiment("wine-classifier")
+19> Wrap training code inside:
+     with mlflow.start_run():
+
+--- Training + Logging ---
+
+20> Define hyperparameters (n_estimators, max_depth, random_state).
+21> Initialize RandomForest model.
+22> Train model using fit().
+23> Predict using predict().
+24> Calculate accuracy score.
+
+--- Manual Logging (Optional with autolog) ---
+
+25> Log parameters using mlflow.log_param().
+26> Log metrics using mlflow.log_metric().
+27> Log model using mlflow.sklearn.log_model().
+
+--- First Experiment Run ---
+
+28> Run script: python src/train.py.
+29> Open MLflow UI.
+30> Verify experiment is created.
+31> Check parameters, metrics, and artifacts.
+
+--- Multiple Experiments ---
+
+32> Change hyperparameters manually.
+33> Run script again.
+34> Repeat multiple times.
+35> MLflow automatically tracks each run.
+
+--- Comparison ---
+
+36> Select multiple runs in MLflow UI.
+37> Compare accuracy and parameters.
+38> Identify best performing model.
+
+--- Automation (Optional) ---
+
+39> Use loop to run multiple experiments:
+     for n in [50, 100, 150]:
+         with mlflow.start_run():
+
+--- Artifacts ---
+
+40> MLflow creates mlruns/ directory.
+41> Stores experiments, runs, metrics, params, models.
+
+--- DagsHub Integration ---
+
+42> Create account on DagsHub.
+43> Create repository on DagsHub.
+44> Install dagshub using pip install dagshub.
+45> Import and initialize:
+     dagshub.init(repo_owner, repo_name, mlflow=True)
+46> Set tracking URI:
+     mlflow.set_tracking_uri("https://dagshub.com/<username>/<repo>.mlflow")
+47> Run script again.
+48> View experiments on DagsHub UI.
+
+--- Model Registry (UI) ---
+
+49> Open run → go to Artifacts → model/.
+50> Click Register Model and give name.
+51> Model appears in Models tab with versioning.
+52> Promote model to Production and use for inference.
+
+--------------------------------------------------
+
+Interview Questionnaire Cheatcode
+
+1> What is MLflow?
+MLflow is an open-source platform for managing the ML lifecycle including experiment tracking, model logging, and deployment.
+
+2> What are MLflow components?
+Tracking, Projects, Models, Model Registry.
+
+3> What is mlflow.autolog()?
+Automatically logs parameters, metrics, and models without manual logging.
+
+4> Difference between autolog and manual logging?
+Autolog logs everything automatically, manual gives full control.
+
+5> What is an experiment in MLflow?
+A container for runs.
+
+6> What is a run?
+A single execution of model training.
+
+7> What is logged in MLflow?
+Parameters, metrics, artifacts, models.
+
+8> What is artifact?
+Output files like model, plots, logs.
+
+9> What is MLflow Model Registry?
+Central place to manage model versions and lifecycle.
+
+10> Model stages?
+None, Staging, Production, Archived.
+
+11> How do you compare models?
+Using MLflow UI by selecting multiple runs.
+
+12> What is tracking URI?
+Location where MLflow stores experiment data.
+
+13> Local vs Remote tracking?
+Local uses mlruns/, remote uses server like DagsHub.
+
+14> What is DagsHub?
+Platform for ML collaboration with MLflow and DVC integration.
+
+15> Why use DagsHub?
+Remote tracking, collaboration, versioning.
+
+16> How to register model?
+From UI → artifacts → register model.
+
+17> How to load model?
+mlflow.pyfunc.load_model("models:/name/Production")
+
+18> What is ETL in MLflow context?
+Data pipeline before training.
+
+19> Why version models?
+To track improvements and rollback if needed.
+
+20> Real-world use?
+Experiment tracking, model comparison, production deployment.
