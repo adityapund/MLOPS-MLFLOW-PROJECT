@@ -11,9 +11,9 @@ import seaborn as sns
 
 # add this to share project with collegues using DagsHub. You can create a repository on DagsHub and push your code there. Then, you can set the tracking URI to point to your DagsHub repository.
 import dagshub
-dagshub.init(repo_owner='aditya', repo_name='MLOPS-MLFLOW-PROJECT', mlflow=True)
+dagshub.init(repo_owner='abc', repo_name='MLOPS-MLFLOW-PROJECT', mlflow=True)
 
-mlflow.set_tracking_uri("https://dagshub.com/adityapund/")
+mlflow.set_tracking_uri("https://dagshub.com/abc123/")
 
 
 mlflow.set_experiment("Wine Experiment")
